@@ -16,6 +16,7 @@ const loadAllPost = async (category) => {
   //     console.log(`https://openapi.programming-hero.com/api/retro-forum/posts`);
   //   }
 
+  document.getElementById("post-container").innerHTML = "";
   const response = await fetch(
     `https://openapi.programming-hero.com/api/retro-forum/posts${
       category ? `?category=${category}` : ""
@@ -102,6 +103,15 @@ const markAsRead = (description, view_count) => {
 </div>
   `;
   markAsReadContainer.appendChild(div);
+
+  handleCount();
+};
+
+const handleCount = () => {
+  const prevCount = document.getElementById("markAsReadCounter").innerText;
+  const covetedCounter = parseFloat(prevCount);
+  const sum = covetedCounter + 1;
+  document.getElementById("markAsReadCounter").innerText = sum;
 };
 
 loadAllPost();
